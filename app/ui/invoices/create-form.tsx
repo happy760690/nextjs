@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { CustomerField } from "@/app/lib/definitions";
 import Link from "next/link";
 import {
@@ -15,6 +15,10 @@ import { createInvoice, State } from "@/app/lib/actions";
 export default function Form({ customers }: { customers: CustomerField[] }) {
   const initialState: State = { message: null, errors: {} };
   const [state, formAction] = useActionState(createInvoice, initialState);
+
+  useEffect(() => {
+    console.log("createInvoice state:", state);
+  }, [state]);
 
   return (
     <form action={formAction}>
@@ -127,6 +131,9 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                   {error}
                 </p>
               ))}
+            <p className="mt-2 text-sm text-red-500">
+              {state.message}
+            </p>
           </div>
         </fieldset>
       </div>
