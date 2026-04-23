@@ -37,7 +37,17 @@ export default function KlineChart() {
       grid:   { vertLines: { color: '#2b2b43' }, horzLines: { color: '#2b2b43' } },
       width:  chartContainerRef.current.clientWidth,
       height: 500,
-      timeScale: { timeVisible: true, secondsVisible: true },
+      timeScale: {
+        timeVisible: true,
+        secondsVisible: true,
+        tickMarkFormatter: (time: UTCTimestamp) => {
+          const date = new Date(time * 1000);
+          const HH = String(date.getHours()).padStart(2, '0');
+          const MM = String(date.getMinutes()).padStart(2, '0');
+          const SS = String(date.getSeconds()).padStart(2, '0');
+          return `${HH}:${MM}:${SS}`;
+        },
+      },
     });
     const series = chart.addSeries(CandlestickSeries, {
       upColor: '#26a69a', downColor: '#ef5350',
@@ -49,13 +59,13 @@ export default function KlineChart() {
         timeFormatter: (timestamp: UTCTimestamp) => {
           const date = new Date(timestamp * 1000);
           const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-          const dayName = days[date.getUTCDay()];
-          const yyyy = date.getUTCFullYear();
-          const mm   = String(date.getUTCMonth() + 1).padStart(2, '0');
-          const dd   = String(date.getUTCDate()).padStart(2, '0');
-          const HH   = String(date.getUTCHours()).padStart(2, '0');
-          const MM   = String(date.getUTCMinutes()).padStart(2, '0');
-          const SS   = String(date.getUTCSeconds()).padStart(2, '0');
+          const dayName = days[date.getDay()];
+          const yyyy = date.getFullYear();
+          const mm   = String(date.getMonth() + 1).padStart(2, '0');
+          const dd   = String(date.getDate()).padStart(2, '0');
+          const HH   = String(date.getHours()).padStart(2, '0');
+          const MM   = String(date.getMinutes()).padStart(2, '0');
+          const SS   = String(date.getSeconds()).padStart(2, '0');
           return `${dayName} ${yyyy}-${mm}-${dd} ${HH}:${MM}:${SS}`;
         }
       }
