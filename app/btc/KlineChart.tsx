@@ -46,7 +46,7 @@ export default function KlineChart() {
     });
     chart.applyOptions({
       localization: {
-        timeFormatter: (timestamp) => {
+        timeFormatter: (timestamp: UTCTimestamp) => {
           const date = new Date(timestamp * 1000);
           const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
           const dayName = days[date.getUTCDay()];
