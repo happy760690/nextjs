@@ -44,6 +44,22 @@ export default function KlineChart() {
       borderVisible: false,
       wickUpColor: '#26a69a', wickDownColor: '#ef5350',
     });
+    chart.applyOptions({
+      localization: {
+        timeFormatter: (timestamp) => {
+          const date = new Date(timestamp * 1000);
+          const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+          const dayName = days[date.getUTCDay()];
+          const yyyy = date.getUTCFullYear();
+          const mm   = String(date.getUTCMonth() + 1).padStart(2, '0');
+          const dd   = String(date.getUTCDate()).padStart(2, '0');
+          const HH   = String(date.getUTCHours()).padStart(2, '0');
+          const MM   = String(date.getUTCMinutes()).padStart(2, '0');
+          const SS   = String(date.getUTCSeconds()).padStart(2, '0');
+          return `${dayName} ${yyyy}-${mm}-${dd} ${HH}:${MM}:${SS}`;
+        }
+      }
+    });
     chartRef.current = chart;
     seriesRef.current = series;
 
