@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev --turbopack",
+    "dev": "node server.js",
+    "dev:turbo": "next dev --turbopack",
     "start": "next start",
     "lint": "eslint ."
   },
@@ -12,24 +13,34 @@
     "autoprefixer": "10.4.20",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
+    "https-proxy-agent": "^9.0.0",
+    "lightweight-charts": "^5.1.0",
     "next": "latest",
     "next-auth": "5.0.0-beta.30",
+    "node-fetch": "^3.3.2",
     "postcss": "8.5.1",
     "postgres": "^3.4.6",
     "react": "latest",
     "react-dom": "latest",
     "tailwindcss": "3.4.17",
     "typescript": "5.7.3",
+    "undici": "^8.1.0",
     "use-debounce": "^10.0.4",
+    "ws": "^8.20.0",
     "zod": "^3.25.17"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.0",
+    "@testing-library/react": "^16.0.0",
     "@types/bcrypt": "^5.0.2",
     "@types/node": "22.10.7",
     "@types/react": "19.0.7",
     "@types/react-dom": "19.0.3",
+    "@types/ws": "^8.18.1",
     "eslint": "^9.0.0",
-    "eslint-config-next": "^16.1.6"
+    "eslint-config-next": "^16.1.6",
+    "jsdom": "^24.0.0",
+    "vitest": "^2.0.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
